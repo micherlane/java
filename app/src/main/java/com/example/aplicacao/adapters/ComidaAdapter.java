@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.aplicacao.R;
@@ -61,6 +62,7 @@ public class ComidaAdapter extends RecyclerView.Adapter<ComidaAdapter.ComidaView
         TextView txtComidaNome;
         TextView txtComidaIngredientes;
         TextView txtComidaValor;
+        Button btnAdicionar;
 
         public ComidaViewHolder(@NonNull final View itemView) {
             super(itemView);
@@ -69,16 +71,25 @@ public class ComidaAdapter extends RecyclerView.Adapter<ComidaAdapter.ComidaView
             txtComidaNome = itemView.findViewById(R.id.txt_comida_nome);
             txtComidaIngredientes = itemView.findViewById(R.id.txt_comida_ingredientes);
             txtComidaValor = itemView.findViewById(R.id.txt_comida_valor);
+            btnAdicionar = itemView.findViewById(R.id.btn_adicionar);
 
             //Configurar clicks
-            itemView.setOnClickListener(new View.OnClickListener() {
+            /*itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int posicao = getAdapterPosition();
                     Comida comida = comidas.get(posicao);
                     Snackbar.make(v,"clicou no(a) "+comida.getNome(),Snackbar.LENGTH_LONG).show();
                 }
+            });*/
+            btnAdicionar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Comida comida = comidas.get(getAdapterPosition());
+                    Snackbar.make(v,"Comida "+comida.getNome()+" adicionada ao carrinho", Snackbar.LENGTH_LONG).show();
+                }
             });
+
 
         }
     }
